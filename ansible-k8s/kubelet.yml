@@ -1,0 +1,5 @@
+---
+
+- hosts: nodes,masters
+  roles:
+  - kubelet

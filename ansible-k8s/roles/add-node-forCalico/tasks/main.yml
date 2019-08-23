@@ -1,0 +1,6 @@
+---
+
+- name: scp etcd-TSL to nodes
+  shell: cd /etc/etcd/ssl; cp ca.pem etcd-ca; cp server-key.pem etcd-key; cp server.pem etcd-cert; scp /etc/etcd/ssl/* root@{{ item }}:/etc/etcd/ssl
+  with_items:
+      - "{{groups.addnodes}}"

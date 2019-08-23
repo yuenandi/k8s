@@ -1,0 +1,4 @@
+---
+
+- name: Install ingress
+  shell: kubectl create -f /root/tmp/ansible-playbooks/ansible-k8s/roles/nginx-ingress/files/mandatory.yaml

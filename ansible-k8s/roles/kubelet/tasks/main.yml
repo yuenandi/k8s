@@ -1,0 +1,28 @@
+---
+
+- name: CP nodeProxyKubelet.sh to nodes
+  copy: 
+    src: nodeProxyKubelet.sh
+    dest: /etc/kubernetes
+- name: Get hostname
+  shell: hostname
+  register: kubehostname
+
+- set_fact: kubehostname={{kubehostname}}
+
+- name: Make kube-proxy.conf kube-proxy.service kubelet.conf kubelet.service file
+  shell: cd /etc/kubernetes; sh nodeProxyKubelet.sh {{master1hostname}} {{hostvars[inventory_hostname]['ansible_default_ipv4']['address']}} {{kubehostname.stdout}} 
+
+- name: Start kube-proxy
+  systemd:
+    name: kube-proxy
+    enabled: yes
+    state: started
+    daemon_reload: yes
+
+- name: Start kubelet
+  systemd:
+    name: kubelet
+    enabled: yes
+    state: started
+    daemon_reload: yes

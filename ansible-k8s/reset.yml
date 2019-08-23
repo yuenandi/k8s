@@ -1,0 +1,35 @@
+
+---
+
+- hosts: master
+  tasks:
+   - name: Reset master
+     shell: kubeadm reset -f
+     debug: msg="kubernets is not installed"
+     ignore_errors: yes
+
+   - name: Delete kubernetes and flannel
+     shell: rm -rf /var/lib/cni/; rm -rf /var/lib/kubelet/*; rm -rf /etc/cni/; ifconfig cni0 down; ip link delete cni0; ifconfig flannel.1 down; ip link delete flannel.1; yum remove kubeadm.x86_64 kubectl.x86_64 kubelet.x86_64 kubernetes-cni.x86_64 -y;
+     debug: msg="kubernets or flannel is not installed"
+     ignore_errors: yes
+
+   - name: Delete Docker
+     shell: yum remove docker.x86_64 docker-client.x86_64 docker-common.x86_64 -y
+     debug: msg="docker is not installed"
+     ignore_errors: yes
+- hosts: node
+  tasks:
+   - name: Reset node
+     shell: kubeadm reset -f
+     debug: msg="kubernets is not installed"
+     ignore_errors: yes
+
+   - name: Delete kubernetes and flannel
+     shell: rm -rf /var/lib/cni/; rm -rf /var/lib/kubelet/*; rm -rf /etc/cni/; ifconfig cni0 down; ip link delete cni0; ifconfig flannel.1 down; ip link delete flannel.1; yum remove kubeadm.x86_64 kubectl.x86_64 kubelet.x86_64 kubernetes-cni.x86_64 -y;
+     debug: msg="kubernets or flannel is not installed"
+     ignore_errors: yes
+
+   - name: Delete Docker
+     shell: yum remove docker.x86_64 docker-client.x86_64 docker-common.x86_64 -y
+     debug: msg="docker is not installed"
+     ignore_errors: yes

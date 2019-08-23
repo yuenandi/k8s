@@ -1,0 +1,85 @@
+
+PLAY [master1] *****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [10.8.4.133]
+
+TASK [common : Be sure docker file] ********************************************
+ok: [10.8.4.133]
+
+TASK [common : Be sure /etc/etcd/ssl file] *************************************
+ok: [10.8.4.133]
+
+TASK [common : Be sure /etc/kubernetes/ssl file] *******************************
+ok: [10.8.4.133]
+
+TASK [k8s-CA : Make *.pem to roles/api-server/files] ***************************
+changed: [10.8.4.133]
+
+TASK [k8s-CA : Be sure CA success] *********************************************
+ok: [10.8.4.133] => {
+    "result.stdout": "admin-key.pem\nadmin.pem\nca-key.pem\nca.pem\nkube-proxy-key.pem\nkube-proxy.pem\nserver-key.pem\nserver.pem"
+}
+
+PLAY [masters] *****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [10.8.4.133]
+ok: [10.8.4.134]
+ok: [10.8.4.135]
+
+TASK [common : Be sure docker file] ********************************************
+ok: [10.8.4.133]
+ok: [10.8.4.134]
+ok: [10.8.4.135]
+
+TASK [common : Be sure /etc/etcd/ssl file] *************************************
+ok: [10.8.4.133]
+ok: [10.8.4.134]
+ok: [10.8.4.135]
+
+TASK [common : Be sure /etc/kubernetes/ssl file] *******************************
+ok: [10.8.4.133]
+ok: [10.8.4.134]
+ok: [10.8.4.135]
+
+TASK [api-server : Be sure kuberbets exist] ************************************
+ok: [10.8.4.133]
+ok: [10.8.4.135]
+ok: [10.8.4.134]
+
+TASK [api-server : CP apiServer.sh to /etc/kubernetes] *************************
+changed: [10.8.4.133]
+changed: [10.8.4.135]
+changed: [10.8.4.134]
+
+TASK [api-server : CP k8s-CA to nodes] *****************************************
+changed: [10.8.4.133] => (item={u'src': u'ca-key.pem'})
+changed: [10.8.4.134] => (item={u'src': u'ca-key.pem'})
+changed: [10.8.4.135] => (item={u'src': u'ca-key.pem'})
+changed: [10.8.4.133] => (item={u'src': u'ca.pem'})
+changed: [10.8.4.135] => (item={u'src': u'ca.pem'})
+changed: [10.8.4.134] => (item={u'src': u'ca.pem'})
+changed: [10.8.4.133] => (item={u'src': u'server-key.pem'})
+changed: [10.8.4.133] => (item={u'src': u'server.pem'})
+changed: [10.8.4.134] => (item={u'src': u'server-key.pem'})
+changed: [10.8.4.135] => (item={u'src': u'server-key.pem'})
+changed: [10.8.4.133] => (item={u'src': u'kube-proxy-key.pem'})
+changed: [10.8.4.135] => (item={u'src': u'server.pem'})
+changed: [10.8.4.134] => (item={u'src': u'server.pem'})
+changed: [10.8.4.133] => (item={u'src': u'kube-proxy.pem'})
+changed: [10.8.4.135] => (item={u'src': u'kube-proxy-key.pem'})
+changed: [10.8.4.134] => (item={u'src': u'kube-proxy-key.pem'})
+changed: [10.8.4.135] => (item={u'src': u'kube-proxy.pem'})
+changed: [10.8.4.134] => (item={u'src': u'kube-proxy.pem'})
+
+TASK [api-server : Make apiserver.conf kube-apiserver.service] *****************
+changed: [10.8.4.133]
+changed: [10.8.4.134]
+changed: [10.8.4.135]
+
+PLAY RECAP *********************************************************************
+10.8.4.133                 : ok=14   changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+10.8.4.134                 : ok=8    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+10.8.4.135                 : ok=8    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

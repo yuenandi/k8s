@@ -1,0 +1,22 @@
+---
+- import_playbook: makefile.yml
+- import_playbook: CA.yml
+- import_playbook: masters.yml
+- import_playbook: CSR.yml
+- import_playbook: docker.yml
+- import_playbook: images.yml
+- hosts: master1
+  roles:
+  - kubelet-prepare
+- import_playbook: kubelet.yml
+- hosts: master1
+  roles:
+  - kubelet-approve-CSR
+
+## Install calico
+- import_playbook: calico.yml
+
+## Install coredns
+- import_playbook: coredns.yml
+- import_playbook: kubelet-modify.yml
+- import_playbook: nginx-ingress.yml

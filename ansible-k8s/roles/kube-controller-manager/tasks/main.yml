@@ -1,0 +1,16 @@
+---
+
+- name: CP kube-controller-manager.sh  to nodes
+  copy: 
+    src: kube-controller-manager.sh
+    dest: /etc/kubernetes
+
+- name: Make kube-controller-manager.cfg kube-controller-manager.service file
+  shell: cd /etc/kubernetes; sh kube-controller-manager.sh
+
+- name: Start kube-controller-manager >>>>>>
+  systemd:
+    name: kube-controller-manager
+    enabled: yes
+    state: started
+    daemon_reload: yes

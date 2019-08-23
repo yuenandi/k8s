@@ -1,0 +1,9 @@
+---
+
+- name: Modify kubelet dns
+  lineinfile:
+    path: '/etc/kubernetes/kubelet.conf'
+    insertbefore: '--pod-infra-container-image(.*)'
+    line: '--cluster-dns=10.0.0.2 --cluster-domain=cluster.local. --resolv-conf=/etc/resolv.conf \'
+- name: restart kubelet
+  shell: systemctl daemon-reload && systemctl restart kubelet && systemctl status kubelet

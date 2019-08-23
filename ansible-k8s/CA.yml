@@ -1,0 +1,6 @@
+---
+- hosts: master1
+  roles:
+  - etcd-CA
+  - k8s-CA
+

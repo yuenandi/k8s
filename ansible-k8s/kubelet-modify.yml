@@ -1,0 +1,6 @@
+---
+
+- hosts: masters,nodes
+  roles:
+  - coredns-kubelet-modify
+  - dns-modify

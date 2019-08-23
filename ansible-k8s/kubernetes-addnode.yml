@@ -1,0 +1,15 @@
+---
+- import_playbook: makefile.yml
+- import_playbook: add-node-forCSR.yml
+- import_playbook: docker.yml
+- import_playbook: images.yml
+- import_playbook: kubelet.yml
+- hosts: master1
+  roles:
+  - kubelet-approve-CSR
+
+## Install calico
+- import_playbook: add-node-forCalico.yml
+
+## Install coredns
+- import_playbook: kubelet-modify.yml

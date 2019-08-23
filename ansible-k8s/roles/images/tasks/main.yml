@@ -1,0 +1,13 @@
+---
+
+- name: CP images ro nodes
+  copy:
+    src: '{{ item.src }}'
+    dest: '/root/tmp/k8s-images/'
+  with_items:
+    - { src: 'calico-cni.tar' }
+    - { src: 'calico-kube-controllers.tar' }
+    - { src: 'calico-node.tar'}
+
+- name: Load images to local
+  shell: cd /root/tmp/k8s-images; docker load -i calico-node.tar;

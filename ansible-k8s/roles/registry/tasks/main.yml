@@ -1,0 +1,4 @@
+---
+
+- name: Install registory
+  shell: kubectl apply -f /root/tmp/ansible-playbooks/ansible-k8s/roles/registry/files/registry_hostpath.yaml  

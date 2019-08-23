@@ -1,0 +1,4 @@
+---
+- hosts: master1
+  roles:
+  - kubelet-prepare

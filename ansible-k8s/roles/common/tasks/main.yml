@@ -1,0 +1,27 @@
+---
+
+- name: Be sure docker file
+  file: 
+    dest: /root/tmp/docker
+    state: directory
+- name: Be sure /etc/etcd/ssl file
+  file:
+    dest: /etc/etcd/ssl
+    state: directory
+- name: Be sure /etc/kubernetes/ssl file
+  file:
+    dest: /etc/kubernetes/ssl
+    state: directory
+
+- name: Be sure /root/tmp/k8s-images file
+  file:
+    dest: /root/tmp/k8s-images
+    state: directory
+
+- name: Be sure calico files
+  shell: mkdir -p /etc/calico/{bin,deploy} && mkdir -p /etc/cni/net.d && mkdir -p /opt/cni/bin
+
+- name: Be sure registry file
+  file:
+    dest:  /etc/docker/certs.d/registry.agree.com.cn
+    state: directory

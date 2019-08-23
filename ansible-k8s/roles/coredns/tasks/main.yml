@@ -1,0 +1,5 @@
+---
+
+- name: Install coredns
+  shell: kubectl create -f  /root/tmp/ansible-playbooks/ansible-k8s/roles/coredns/files/coredns.yaml
+

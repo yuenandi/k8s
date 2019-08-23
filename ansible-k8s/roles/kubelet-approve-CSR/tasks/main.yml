@@ -1,0 +1,4 @@
+---
+
+- name: Approve kubelet CSR
+  shell: sh /root/tmp/ansible-playbooks/ansible-k8s/roles/kubelet-approve-CSR/files/masterApprove.sh

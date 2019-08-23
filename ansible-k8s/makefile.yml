@@ -1,0 +1,7 @@
+---
+- hosts: masters
+  roles:
+  - common
+- hosts: nodes
+  roles:
+  - common

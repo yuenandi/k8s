@@ -1,0 +1,37 @@
+---
+
+- name: Be sure kuberbets exist
+  unarchive:
+    copy: yes
+    src: kubernetes-server-linux-amd64.tar.gz
+    creates: kubernetes
+    dest: /etc/kubernetes
+
+- name: CP kube-apiserver.sh to /etc/kubernetes
+  copy:
+    src: kube-apiserver.sh
+    dest: '/etc/kubernetes'
+
+- name: CP k8s-CA to nodes
+  copy:
+    src: '{{ item.src }}'
+    dest: '/etc/kubernetes/ssl'
+  with_items:
+    - { src: 'ca-key.pem' }
+    - { src: 'ca.pem' }
+    - { src: 'server-key.pem'}
+    - { src: 'server.pem'}
+    - { src: 'kube-proxy-key.pem'}
+    - { src: 'kube-proxy.pem'}
+    - { src: 'admin-key.pem'}
+    - { src: 'admin.pem'}
+
+- name: Make apiserver.conf kube-apiserver.service
+  shell: cd /etc/kubernetes; sh kube-apiserver.sh {{hostvars[inventory_hostname]['ansible_default_ipv4']['address']}} {{var2}}
+
+- name: Start kube-apiserver  >>>>>>
+  systemd:
+    name: kube-apiserver
+    enabled: yes
+    state: started
+    daemon_reload: yes

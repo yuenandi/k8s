@@ -1,0 +1,4 @@
+---
+- hosts: master1
+  roles:
+  - add-node-forkubelet-prepare

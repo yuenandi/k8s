@@ -1,0 +1,6 @@
+---
+
+- name: CP ca.crt to /etc/docker/certs.d/registry.agree.com.cn
+  copy:
+    src: "ca.crt"
+    dest:  "/etc/docker/certs.d/registry.agree.com.cn"

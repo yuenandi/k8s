@@ -1,0 +1,20 @@
+---
+#- name: Be sure docker is not installed
+#  shell: rpm -qa | grep docker
+#  register: is_docker_installed
+- name: Be sure docker18.09.5 exist
+  unarchive:
+    creates: docker
+    copy: yes
+    src: docker-18.09.5.tar.gz
+    dest: /root/tmp/docker
+- name: Be sure docker is installed
+  shell: cd ~/tmp/docker/docker; yum install -y *.rpm;
+#  when: is_docer_installed.stdout is none
+- name: Be sure docker is running and enable
+  systemd:
+    name: docker
+    enabled: yes
+    state: started
+    daemon_reload: yes
+#  when: is_docer_installed.stdout is none

@@ -1,0 +1,42 @@
+- name: Be sure etcd exist
+  unarchive:
+    copy: yes
+    src: etcd-v3.3.12-linux-amd64.tar.gz
+    creates: etcd-v3.3.12-linux-amd64
+    dest: /etc/etcd
+
+- name: Be sure /etc/etcd/cfg file
+  file:
+    dest: /etc/etcd/cfg
+    state: directory
+
+- name: CP etcdInstall.sh to nodes
+  copy: 
+    src: etcdInstall.sh
+    dest: /etc/etcd
+
+- name: CP CA to nodes
+  copy:
+    src: '{{ item.src }}'
+    dest: '/etc/etcd/ssl'
+  with_items:
+    - { src: 'ca-key.pem' }
+    - { src: 'ca.pem' }
+    - { src: 'server-key.pem'}
+    - { src: 'server.pem'}
+
+- name: Get hostname
+  shell: hostname
+  register: hostname
+
+- set_fact: hostname={{hostname}}
+
+- name: Make etcd.conf etcd.service file
+  shell: cd /etc/etcd; sh etcdInstall.sh etcd-v3.3.12-linux-amd64 {{hostvars[inventory_hostname]['ansible_default_ipv4']['address']}} {{hostname.stdout}} {{var1}}
+
+- name: Start etcd >>>>>>
+  systemd:
+    name: etcd
+    enabled: yes
+    state: started
+    daemon_reload: yes

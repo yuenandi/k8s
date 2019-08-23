@@ -1,0 +1,166 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: docker-registry-secret
+  namespace: infras
+  labels:
+    app: docker-registry
+type: Opaque
+data:
+  haSharedSecret: "NTJCb3BockE4Szd2T2pieg=="
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: docker-https-secret
+  namespace: infras
+  labels:
+    app: docker-registry
+type: Opaque
+data:
+  registry.crt: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZ1VENDQTZHZ0F3SUJBZ0lKQU1BM1NWU1ljekFWTUEwR0NTcUdTSWIzRFFFQkN3VUFNSE14Q3pBSkJnTlYKQkFZVEFrTk9NUkl3RUFZRFZRUUlEQWxIZFdGdVowUnZibWN4RWpBUUJnTlZCQWNNQ1VkMVlXNW5XbWh2ZFRFTwpNQXdHQTFVRUNnd0ZRV2R5WldVeEREQUtCZ05WQkFzTUEwRkdRVEVlTUJ3R0ExVUVBd3dWY21WbmFYTjBjbmt1CllXZHlaV1V1WTI5dExtTnVNQjRYRFRFNU1EVXhNVEV3TkRFME9Gb1hEVEk1TURVd09ERXdOREUwT0Zvd2N6RUwKTUFrR0ExVUVCaE1DUTA0eEVqQVFCZ05WQkFnTUNVZDFZVzVuUkc5dVp6RVNNQkFHQTFVRUJ3d0pSM1ZoYm1kYQphRzkxTVE0d0RBWURWUVFLREFWQlozSmxaVEVNTUFvR0ExVUVDd3dEUVVaQk1SNHdIQVlEVlFRRERCVnlaV2RwCmMzUnllUzVoWjNKbFpTNWpiMjB1WTI0d2dnSWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUNEd0F3Z2dJS0FvSUMKQVFEb2dPMWFNZ29MNjZpRGpQdDZlaXA1cDhXMlZvN3ZZOHJBWEVzTk9LOTJkNnNGMmZ6MktNcTVaMVV4OElYZAoxYlBTUFIyalVwTm9MMmpSV2tRdktpaXVNSk5venV3Y2tMcExrZlI0d1BNNXFuMmNSd0syV2t4TG95bkxjKzY2CjEvTDljdERMMU5rWVNFdnlyY3VPeVBrSWljbUhuanI2eTA4UzZ2emRmQnpFVTVSd0Z3RUZ1aU5JcFpHbzNhMFYKYzkrMllHZmw2T1laVVM1b003eFhWNjNJemczcThtdDlvMEM0WkltbkdvL0ZkN2hNMUxzL25nR2NkcTltaER6ZgpsTTR3aFRxQVlwSnJldU9vMjhyUGh4Z0pQWWx1b0JoaXZicnAzMTd0Z3BuUzVUWWRkbXhrckhZVkZNVGZoeER0CjlRMEo2NnlFblkxVjVsR2xtSjJ5Y1dWZjVJNVVoWC9IdzdmNUFmZ2s0RlNjemZSZVdZVGFTWWthZ3lML0F5Z1cKcVUwY2NONkhTOUVQUEtKRGo5eDdVTElqcWp3eVJMNCttVHgxMElHNlFmMkh4d1ZGUWRvZ3JDT2wzVUZKemhicApiMFdyNUVZTXZnRm5ZN09VQ3cyWVl6T3Z3ZzdFM1VPVkRXU0NUUVREQzFjU2RqYUJMVGxkbHVXK1FhVnQ4eStlCnBxdkVGUTZxbVVmV2FjY2VkT2Nod256NVZjTHBrdkE2dmhFR1hITWxYMXdwVzNoVjFGcDk4d3pqVFk3OWd6ckcKamljaTg4YThtZnQ4dkhlT3lDOGdGbG9wK1pVdkNGM1NvNk93NDByaWNmWWZweFVURXhGQnpmZXZUcFdWQ0p3cwo5QTlUcTJrNVpXbk42T0RxazY5WGtaaEdPa3g3dVBuRmpjY3FualpiaG9vRmd3SURBUUFCbzFBd1RqQWRCZ05WCkhRNEVGZ1FVay9OOWhJVFdCd3ZNZkpjQ1FPdDh6Z0tKejVBd0h3WURWUjBqQkJnd0ZvQVVrL045aElUV0J3dk0KZkpjQ1FPdDh6Z0tKejVBd0RBWURWUjBUQkFVd0F3RUIvekFOQmdrcWhraUc5dzBCQVFzRkFBT0NBZ0VBREZUZApxVkl5RzBTQUFMeWZkS001aSt3cmg3Q3BWYVJ5K2s0bUZVdTlZMmpIdHovTEJrZ0lwcS9vaHpMQS9pYXY1RENnCmpLV2dWblE1cGNrUUlqcVpnQ3BHd1VJWW8vVTJ3Z3ZOZm9GSS90UjlJbEx1UmpxaVpVU1ZFaFVpWW8wWmNLc3AKelZTNUJXM1RqZkpmRkloMkpxZFc5ekVIUjRwRWE4WkMvSkFkbEZFTmg0czVrZW9IQ2dPQkhOdUkwSXB3Y0dHcAo2WGdidTdSanQrSmJoUkxveHU5ZXZCemt3L1B5UENBTWYyd2hGazhzUEVjNTNuZkZld3EwTHB6dlBZVUp2RzI3Ck40L3hTd1NyTUdNWTRQaXNlcUVYUEJkS096UjBVZTcweVQxVjc1TUd6eWthNHdDd0huRDJZemh0MUJIaktCNG4KQU9zQk1XbVhjRTd6YmZjRTdkcC9ZaUgzVC9yNEorYnJVT01MUDN1bHVnbkFvYnBhM1NjTExVN29vSXRWWGZGMwo0UWJJNlBGdkpmU1FaLzlKTERpY0xwZ0tYNVdycUdKcG12RmtCRFZ5S3hTZHEvWHE4S3lsM3l0RkNObzNSOFZNClJuaS8wYWMrbDJ0S291NXNaRkRMNkFFMTRSMFB5bjZudndoY2Nybk5yN2lvYUVjSWc0VW8zd3lyY2w3V1ZBRmkKd090U0dtdXNueHFCT1pNUXhTbFBSVHhHNVRuemZMMGhIWjNrWjhzODZDVXNEcHZrOTRoR3Q2L1JEME5OU1F4WApGNmdRbEs3U3YrYkhVQ3N3eXNpR1dLUDlXZlY2d2FBVWZRQjBtUXNkNTRkdWhHY1JXTHBiM1VaRVBMdnpWUktuCmE0VHA0QVFFZ2JvV0hXTzJiWjR2MlBCL3VwcFVzK2NwYzBhTEpVbz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo="
+  registry.key: "LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUpRd0lCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQ1Mwd2dna3BBZ0VBQW9JQ0FRRG9nTzFhTWdvTDY2aUQKalB0NmVpcDVwOFcyVm83dlk4ckFYRXNOT0s5MmQ2c0YyZnoyS01xNVoxVXg4SVhkMWJQU1BSMmpVcE5vTDJqUgpXa1F2S2lpdU1KTm96dXdja0xwTGtmUjR3UE01cW4yY1J3SzJXa3hMb3luTGMrNjYxL0w5Y3RETDFOa1lTRXZ5CnJjdU95UGtJaWNtSG5qcjZ5MDhTNnZ6ZGZCekVVNVJ3RndFRnVpTklwWkdvM2EwVmM5KzJZR2ZsNk9ZWlVTNW8KTTd4WFY2M0l6ZzNxOG10OW8wQzRaSW1uR28vRmQ3aE0xTHMvbmdHY2RxOW1oRHpmbE00d2hUcUFZcEpyZXVPbwoyOHJQaHhnSlBZbHVvQmhpdmJycDMxN3RncG5TNVRZZGRteGtySFlWRk1UZmh4RHQ5UTBKNjZ5RW5ZMVY1bEdsCm1KMnljV1ZmNUk1VWhYL0h3N2Y1QWZnazRGU2N6ZlJlV1lUYVNZa2FneUwvQXlnV3FVMGNjTjZIUzlFUFBLSkQKajl4N1VMSWpxand5Ukw0K21UeDEwSUc2UWYySHh3VkZRZG9nckNPbDNVRkp6aGJwYjBXcjVFWU12Z0ZuWTdPVQpDdzJZWXpPdndnN0UzVU9WRFdTQ1RRVERDMWNTZGphQkxUbGRsdVcrUWFWdDh5K2VwcXZFRlE2cW1VZldhY2NlCmRPY2h3bno1VmNMcGt2QTZ2aEVHWEhNbFgxd3BXM2hWMUZwOTh3empUWTc5Z3pyR2ppY2k4OGE4bWZ0OHZIZU8KeUM4Z0Zsb3ArWlV2Q0YzU282T3c0MHJpY2ZZZnB4VVRFeEZCemZldlRwV1ZDSndzOUE5VHEyazVaV25ONk9EcQprNjlYa1poR09reDd1UG5GamNjcW5qWmJob29GZ3dJREFRQUJBb0lDQVFDQlhvdXpMamlzM1ZtTXFUdWNzTEZGCnMvYXRPSWliNTFqL285c1c1ajJybTNhTDhQbHlOc3htVVhyMEtMTXo5aDd5a3BNVk4zTlIrMTlGYmdhV2Y4elcKNzZ4Mkd2MEIvLzNJNHRPM0JSWFJObTVpTUpqdndsckZrMnBFREtQL1R2Mmp6T2tsSWJBU2ROZmRscHEzUGxoagpTZGZiSUU0TkVtZFRUWEdhQTk4MTFwTzNzdlVjcksvSlVtYzBJUFNZQlR1cmpRVUN4bzZSODd2d3V5akhLTUJJCkJXOTFGYUo5N0FLdEZ6UUl5UnpLY1kwWkl4MTFqb095L2M4bktkbDlScDFjSGlXcEhpLytvZ2hmQXIxY3Ivek4KMTNITEhrV3pXNExQY3p5c3g0aXo4bG9rRnFyRmNiamFqZzNsbW8vdTkvVmpXY0ZLb1NmdGJoUnNJZmxOT3c5KwpObnYvTmRFMzJpeXc3Wnd1RFJNTjVqdUxNcnlTdXdBRnI1NWJVWGg2MHMyT0ZXWks4cE1PdW5RQnZFa0txY0RkCjNSMWJsSkNKdjhqdlJ5M01jOE8wMWVoYXB3VnVWNEhpVm95NzlncDhONmxoUnZ3NmlaVldTSUJjaHlyamlqRUcKSUxhTWc2NmJ6eHJPejFzMUdNcDRRdGt0OXFFckFoRkttVUM2aDFmaVVRUk5tOGhoTXZmb0FiL1lwMzVrZXJFKwpMSnhXYmZJMzlBMSsyRHFpYWxnNTI2bzgvYlpjNGJTc0JyTC9kRmdyU2c2UU4wRExma2VldkFBelBtMjFIZkptCmsxTG02d0grc2VTNXMrMVd4Zjk3YmtHcnBxbXZ3OGFKSDlHVk9VTXNBKzJVQ2F1TmtUVktNQVI0Y3V3U0w0aUsKeHYrakwrOUxMNjQ2TDFYUVh0T3pBUUtDQVFFQTlCQ0d0Q1JqSENsTEttb3ZXSUlRdHN4cWhaempNRjdBWUw2SgpCem9zVENIK3VEcjJoRWI2a3BwYTdvWmQ0Z0VwakJTSHE5aW5BRUw2YWRlcndKeDJYSUNhejFqZ3RYV3Vsa2l2CnVSbzhFRHlPaHBnM0FtRUhsMzVoSlhLTDNhNWhnZXlvRWpqRzBOVFVtUWdDQy9kSTg1SWNyRkQybVcvSXdJL0EKemdWNmZKRFZtTFlpRTJMR0l4MmF5ZDI3NTVlbDJPbXlxUko5Zkw0THRvWmUyS3JsMzdCbUFLSWRMWUdWMXB4ZAppR0Z4TnJBVnVvRzM5NFhjWXNVb3ZLU2hhSXd3VFFqbWptVGxlOUZpbHMvL2RxN0dURVlLWnJ0YnhTbXR5ODRmCkp0R3VLT1J5OVFIR0YwK2haWFdWeWNLY3pQNm5GZ3FwT3ZrMXBVaHJkM0gvRllURlF3S0NBUUVBODkrckVhVTAKenhBOG9heG10MUJKY2dCNWdWSlc4UXZvVXlRQ0xmRmxQTGZkbXhFcHZvMnVFdWg0ZzlUMnlaUWdaR3RBbXpMYQp6cHEzSkhoTXYvaHl2MVFSV3JTb0VTKzNEWlNFalcvbjFiSEtWNCtVdmFuSVFvenFucTFoZktoQUN4eVdBTURRCjNUamFVcE1LTzVHWWFtSlhLcHRyd1ZMRTFneGVlZE5tenV3SU1YZlNsMU5HUTVvMUZwUlVIVVJmd3BWOWI5WDUKd1BFZjdYTmtIQXp1dFRoTVUzY0xJMmhwOVFtL25pRFlGY0d6OUtXT0lCMHFERWtBaHl5OFdOeno2MXJOZ3JhUwp2RlRweDBWTm96NDlwQUlPd0JoYkxZaFJFMlFkNWdBWHhWdUsxUXNWWG5RUXREdStxSUUydjRhL3dza0VSTWlzClZWT3pGR2J3RmkyYXdRS0NBUUFxQUFZT1RneTROZXIzZTVwMk1ydkptVmZqY21JdVdyL2taaVdTbHRJMHI4enoKeTBITTlhSDlSSTdOYVZZU3BIeVAzS0NVVkE0NUgwMlVsVWE3T0xHdHJYdjJucWJjMDBtZUZ4Z1dWSXR0aDk1SApEejY0TEJad1haRStMbjRmUWZrSnNMNGpsSjJ5Sms0SG43Y3FjLzJiM05NT1hFaHpreWNLN0RJVHdpR1graHluCjBRQUFNZ2xDMWI5amFjTUNVYmg2b1l6YlI1Rk12QytyMDJmVEJXWFZucmVPK0ZicEU5bkRPdGxsdE04VXlDeVYKRWVta3NPYUNJTWVuM3ZUZjF2QWc4WjByZC9WOTMwU0dDM2s4NVVxK3FYYjB3dDFDQ3JBYjJIYkg2V0Y5TEFNVQpZcC9DTnpQaEQrRWMvVjZhY0dBMGpOVWVqdkJLWnpJSE5oamRqU0dkQW9JQkFBdG54WDlndzVSL2hPWm13ck1HCkRUbElybVlPN01QL001RlgyTVkvU09YTEQ1RWwvMWJMRjM0STQwSC9IcitVcnVNalpQVWRMc0NFMmRYWnpuVVgKOEgza041K1BYV0RZWTI0K0tPallkL1kxaDJvSzdBRG14TmZmOFVVVWhMK291cjRLU3pXanp1RFp2TlFwemt1MAo1blRyUG5wZXBHNTVLWDE5UEpuaitpWHBRZ1RXUHNJWEFlMDlkQWduVGJ2RXE5blUxZlg2QXVFMEpiTWNOMjFjCmFYbU9OWHVkMEthS1JwSlFMMmI4MEQ1TVBkZE9PdFJqcU1qRVRVTUZJNVhnVjRRRlRpRXoycTcySmF6TkgvRm4KZ3NoOTFDVEZ2dFhsVHkxaC9FZjZieUlxd3RadDIwVDhscDluUCtadmpKanVlMTludVV4aU9qVVBZZ3V0T01OQQp4TUVDZ2dFQkFPWURaYW9Qb3pHTFBwbVNGTndsWU1wRnRIbGdYL1R3b3JvUGpwaHBOWUd1T1drZ2J2alAycDZ5CkpsOW1LaXgyaU5MZGk0VHlyTDU1bElVRUlJa0VCUmhxajQyUVBiZXFLVFExcmRFa1gvV2tYSjBPY1c1WC9TMWwKc1E3bkpLaFE5VmpLVDVBWXh0U0tCaXNGQzVYalJITE5kbjd2WGxuZnJvaWFxczhQak9uVUNkVS85ZU1mVjdnQwpXMyswYW1idngrdTJkUEVNQkY5eFpQUndaY3QycHZpN0dBWE11dUZleGVUcEc4U2JKNVR4cFdTU3hTdDhVOVcvCmVnNVJXV0QyT0MwNWEweUl0clZvVFlrb1ZkLy9zOWhyeHd4RXJIbkt6cFZsVTBPa24ycG5DQmhkZnJLOEp0WEUKejNZcXN5ZTZHVXcvWERGV2lwcCsrUk4zMTlEWmFHTT0KLS0tLS1FTkQgUFJJVkFURSBLRVktLS0tLQo="
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: docker-registry-config
+  namespace: infras
+  labels:
+    app: docker-registry
+data:
+  config.yml: |-
+    health:
+      storagedriver:
+        enabled: true
+        interval: 10s
+        threshold: 3
+    http:
+      addr: :5000
+      headers:
+        X-Content-Type-Options:
+        - nosniff
+      tls:
+        certificate: /certs/registry.crt
+        key: /certs/registry.key
+    log:
+      fields:
+        service: registry
+    storage:
+      cache:
+        blobdescriptor: inmemory
+    version: 0.1
+
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: docker-registry-pvc
+  namespace: infras
+  labels:
+    app: docker-registry
+spec:
+  accessModes:
+    - "ReadWriteMany"
+  resources:
+    requests:
+      storage: "8Gi"
+  storageClassName: "nfs"
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: registry
+  namespace: infras
+  labels:
+    app: docker-registry
+spec:
+  type: ClusterIP
+  ports:
+    - port: 443
+      protocol: TCP
+      name: registry
+      targetPort: 5000
+  selector:
+    app: docker-registry
+
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: docker-registry
+  namespace: infras
+  labels:
+    app: docker-registry
+spec:
+  replicas: 2
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: docker-registry
+    spec:
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000
+      containers:
+        - name: docker-registry
+          image: "registry.agree.com.cn/agree/afa/registry:2.7.1"
+          imagePullPolicy: IfNotPresent
+          command:
+          - /bin/registry
+          - serve
+          - /etc/docker/registry/config.yml
+          ports:
+            - containerPort: 5000
+          livenessProbe:
+            httpGet:
+              scheme: HTTPS
+              path: /
+              port: 5000
+          readinessProbe:
+            httpGet:
+              scheme: HTTPS
+              path: /
+              port: 5000
+          resources:
+            limits:
+              cpu: 300m
+              memory: 200Mi
+            requests:
+              cpu: 200m
+              memory: 100Mi       
+          env:
+            - name: REGISTRY_HTTP_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: docker-registry-secret
+                  key: haSharedSecret
+            - name: REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY
+              value: "/var/lib/registry"
+            - name: REGISTRY_STORAGE_DELETE_ENABLED
+              value: "true"
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/registry/
+            - name: "docker-registry-config"
+              mountPath: "/etc/docker/registry"
+            - name: "docker-https-secret"
+              mountPath: "/certs"
+              readOnly: true
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: docker-registry-pvc
+        - name: docker-registry-config
+          configMap:
+            name: docker-registry-config
+        - name: docker-https-secret
+          secret:
+            secretName: docker-https-secret

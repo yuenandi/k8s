@@ -1,0 +1,19 @@
+- name: Be sure /etc/etcd/cfg file
+  file:
+    dest: /etc/etcd/cfg
+    state: directory
+- name: Copy cfssl to /usr/local/bin/
+  copy:
+    src: '{{ item.src }}'
+    dest: '/usr/local/bin/'
+    mode: 555
+  with_items:
+    - { src: 'cfssl-certinfo_linux-amd64' }
+    - { src: 'cfssljson_linux-amd64' }
+    - { src: 'cfssl_linux-amd64'} 
+- name: Make *.pem to roles/etcd/files
+  shell: cd /root/tmp/ansible-playbooks/ansible-k8s/roles/CA/files; cfssl_linux-amd64 gencert -initca ca-csr.json | cfssljson_linux-amd64 -bare ca -; cfssl_linux-amd64 gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=www server-csr.json | cfssljson_linux-amd64 -bare server; mv *.pem /root/tmp/ansible-playbooks/ansible-k8s/roles/etcd/files; cd /root/tmp/ansible-playbooks/ansible-k8s/roles/etcd/files; ls *.pem; 
+  register: result
+- name: Be sure CA success
+  debug:
+    var=result.stdout

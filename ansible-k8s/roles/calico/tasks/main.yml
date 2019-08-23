@@ -1,0 +1,17 @@
+---
+
+- name: cp calico.yaml
+  copy:
+    src: calico.yaml
+    dest: /etc/calico/deploy
+
+- name: Vi calico.yaml
+  shell: cd /etc/calico/deploy; sed -in-place -i 's/etcd_endpoint_var/{{var3}}/' calico.yaml;
+
+- name: scp etcd-TSL to nodes
+  shell: cd /etc/etcd/ssl; cp ca.pem etcd-ca; cp server-key.pem etcd-key; cp server.pem etcd-cert; scp /etc/etcd/ssl/* root@{{ item }}:/etc/etcd/ssl
+  with_items:
+      - "{{groups.nodes}}"
+
+- name: Install calico
+  shell: kubectl create -f /etc/calico/deploy/calico.yaml

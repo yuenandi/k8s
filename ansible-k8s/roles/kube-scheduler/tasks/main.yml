@@ -1,0 +1,19 @@
+---
+
+- name: CP kube-scheduler.sh  to nodes
+  copy: 
+    src: kube-scheduler.sh 
+    dest: /etc/kubernetes
+
+- name: Make etcd.conf etcd.service file
+  shell: cd /etc/kubernetes; sh kube-scheduler.sh
+
+- name: Start kube-scheduler.sh >>>>>>
+  systemd:
+    name: kube-scheduler
+    enabled: yes
+    state: started
+    daemon_reload: yes
+
+- name: Be sure kubectl
+  shell: cp /etc/kubernetes/kubernetes/server/bin/kubectl /usr/local/bin

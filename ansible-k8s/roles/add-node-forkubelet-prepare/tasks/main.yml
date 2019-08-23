@@ -1,0 +1,24 @@
+---
+
+- name: CP nodePrepare.sh  to nodes
+  copy: 
+    src: nodePrepare.sh
+    dest: /etc/kubernetes
+
+- name: Make bootstrap.kubeconfig kube-proxy.kubeconfig file
+  shell: cd /etc/kubernetes; sh nodePrepare.sh {{hostvars[inventory_hostname]['ansible_default_ipv4']['address']}}
+
+- name: scp bootstrap.kubeconfig,kube-proxy.kubeconfig to nodes
+  shell: scp /etc/kubernetes/ssl/{bootstrap.kubeconfig,kube-proxy.kubeconfig} root@{{ item }}:/etc/kubernetes/
+  with_items:
+      - "{{groups.addnodes}}"
+
+- name: scp kube-proxy,kubelet to nodes
+  shell: scp /etc/kubernetes/kubernetes/server/bin/{kube-proxy,kubelet} root@{{ item }}:/usr/local/bin/
+  with_items:
+      - "{{groups.addnodes}}"
+
+- name: scp CA to nodes
+  shell: scp /etc/kubernetes/ssl/ca.pem root@{{ item }}:/etc/kubernetes/ssl
+  with_items:
+      - "{{groups.addnodes}}"
