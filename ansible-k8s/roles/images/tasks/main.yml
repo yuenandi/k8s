@@ -8,6 +8,18 @@
     - { src: 'calico-cni.tar' }
     - { src: 'calico-kube-controllers.tar' }
     - { src: 'calico-node.tar'}
+    - { src: 'registry.tar'}
+    - { src: 'ngnix.tar'}
+    - { src: 'nginx-ingress-controller.tar'}
+    - { src: 'coredns.tar'
 
 - name: Load images to local
-  shell: cd /root/tmp/k8s-images; docker load -i calico-node.tar;
+  shell: cd /root/tmp/k8s-images; docker load -i {{ item.src }};
+  with_items:
+    - { src: 'calico-cni.tar' }
+    - { src: 'calico-kube-controllers.tar' }
+    - { src: 'calico-node.tar'}
+    - { src: 'registry.tar'}
+    - { src: 'ngnix.tar'}
+    - { src: 'nginx-ingress-controller.tar'}
+    - { src: 'coredns.tar'}
